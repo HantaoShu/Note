@@ -1,0 +1,5 @@
+- 设置向量 c()
+- 可以用\去转义'' 或者""  可以用`即反引号设置各类的变量名
+- lapply(list,fun) 返回一个list 对原本list中每个进行这个函数
+- sapply 和lapply相似 如果只有一个元素 会变成vctor 如果每个list长度相同 会变成matrix
+- 
