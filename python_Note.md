@@ -10,7 +10,8 @@
 - 长字符串可以用3'  '''aaa''' 可跨行
 - repr 将某种数据转成字符串的形式 比如字符串和数字拼接需要这函数   有些地方用反引号
 - unicode编码字符串 在前缀加u
-
+- 包 是一个有层次的文件目录结构  每个包都有\_\_init\_\_.py
+- range 和 xrange 在py2中 range返回列表 xrange返回生成器 在py3中 range被xrange取代
 # 列表与元组
 - 列表和元组最大的区别是元组是不可改变 
 - 编号是从0开始的
@@ -34,7 +35,7 @@
     - sort和sorted sort在本身更改 sorted返回一个列表  sort(reverse=True,key=len) key是比较方法 
 - 平常用，分割的就是元组  如果要单独一个元素的元组 需要在后面加一个，
 - tuple可以生成一个元组 从字符串或列表
-
+- 作用域  在函数外是全局 在内部是局部 
 # 字符串
 - 格式化字符串   format % values  format是字符串格式化与c相似 values 是元组  
   format   
@@ -69,7 +70,7 @@
 - 常规函数和使用和列表相似
 - 利用字典的格式化字符串  ‘  $(xxx)’ %yyy 显示的是yyy[xxx]
 - 方法 
-  - clear 清空  放置因为引用赋值造成的问题，如  
+  - clear 清空  防止因为引用赋值造成的问题，如  
     x={}  
     y=x  
     x['key'] = 'value'  
@@ -94,8 +95,10 @@
 # 条件 循环和其他语句
 - print 打印时候可以用，打印多个表达式，打印结果会用' '代替，
 - import  
-  - import \*\*
-  - from \*\* import \*\*
+  - import \*\*  
+    需要写之前的包路径
+  - from \*\* import \*\*  
+    不用
   - from \*\* import \*\* as \*\*
 
 - 赋值  可以多个一起赋值  列表赋值为引用赋值 要深拷贝需要 b = a[:]
@@ -169,6 +172,7 @@
   try:  
     ...  
   except ..Exception:  
+  
     ..
 - 继续传递异常  raise 不加参数
 - 可以在一个try中加多个exception 多次捕捉 也可以一次性捕捉多个异常 用元组
@@ -178,14 +182,46 @@
 - finally子句  一定会运行的子句
 
 # 魔法方法 属性 迭代器
-- 新式python  在类前面加__metaclass__=type
+- 新式python  在类前面加\_\_metaclass\_\_=type
 - \_\_init\_\_  构造器方法 
-- 构造子类的的构造器方法时要现运行父类的构造器方法,或者在新式python中用super(类名,self).__init__()  
+- 构造子类的的构造器方法时要现运行父类的构造器方法,或者在新式python中用super(类名,self).\_\_init\_\_()  
   使用super可以很好的处理继承多个类  可以一次性init
-- 实现对量的序列和映射 __setitem__(self,key,value) __getitem__(self,key) __len__(self) __delitem(self,key) 
+- 实现对量的序列和映射 \_\_setitem\_\_(self,key,value) \_\_getitem\_\_(self,key) \_\_len\_\_(self) \_\_delitem\_\_(self,key) 
 - 可以继承UserList UserString UserDict 创建自己的list等
-- 属性 property函数 绑定一个属性 需要0-4和参数  fget fset fdel doc- 分明是 读取 设置 删除 文档
+- 属性 property函数 绑定一个属性 需要0-4和参数  fget fset fdel doc- 分明是 读取 设置 删除 文档  
+  旧式 使用\_\_getattr\_\_ 和\_\_setattr\_\_ \_\_delattr\_\_ 参数有self name name是指对应变量的名字
 - 静态方法和成员方法
   - 在静态方法后加 方法=staticmethod(方法)
   - 使用装饰器(@) @staticmethod  @ classmethod
-//9.5.3
+- 迭代器  
+迭代器值具有next方法的对象  本身就直接返回self 但是要实现next方法
+- 生成器  
+生成器具有yield语句 可用于迭代或者用于生成list等数据结构  
+可以使用递归  
+相当于函数并没有执行 而是存在一个迭代器 每一次请求 执行直到yield 或者 return  
+方法  
+  - send方法 需要一个参数 此时 原函数中的yield会变成一个表达式而不是一个语句 表达式的值就是send的值
+    
+  - throw 在生成器中引发一个异常系统库
+  - close 关闭 印发
+
+
+# 充电时刻
+- 查看当前是在什么模块下　\_\_name\_\_ 常用 if\_\_name\_\_==\_\_main\_\_: do sth
+- 包 包必须含有\_\_init\_\_.py 这个模块  
+  可以使用dir() 查询或者查询\_\_all\_\_查询可以使用的  
+  \_\_doc\_\_ help 查看文档  
+  \range被xrange取代_\_file\_\_ 查看源代码位置
+- 
+  - sys 包含与python解释器相关的参数
+  - os 系统库 包括一些环境变量
+  - fileinput 包含文件操作
+  - heapq deque(from collections import deque) sets 基本的数据结构
+  - random 有一个shuffle 重新排列 
+  - time asctime  sleep
+  - re 
+    - compile 编译正则表达式
+    - match 从开始匹配 返回起点或者None
+    - serch 从任意处匹配 返回起点或者None
+    - spilt 分隔
+    - findall 查找所有子串 以列表返回
