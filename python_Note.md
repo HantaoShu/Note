@@ -225,3 +225,25 @@
     - serch 从任意处匹配 返回起点或者None
     - spilt 分隔
     - findall 查找所有子串 以列表返回
+    - sub  替换
+
+# 文件和素材
+- open read字节数 write close
+- seek 移动文件指针  tell 获得文件指针长度
+- readline 可以加最长字符 writeline 注意加\n
+- with open("filename") as somefile:  
+    do_sth(somefile)  
+  相当于try catch了
+- 全部读完 for char in f.read() 或 for line in f.readlines() for line in fileinput.input(filename)
+
+- 文件迭代器  for line in f
+
+# 数据库支持
+- connect 连接一个数据库
+- rollback 回滚
+- commit 提交
+- cursor 获得游标  
+  对游标使用　execute 可以执行sql语句
+- 操作的时候先连接 获得游标 对游标进行操作  提交 关闭
+
+# 网络编程
