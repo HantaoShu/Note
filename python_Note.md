@@ -247,3 +247,22 @@
 - 操作的时候先连接 获得游标 对游标进行操作  提交 关闭
 
 # 网络编程
+#### socket
+主要有两个方法 send 和recv  
+服务器可以listen 一个地址和端口 并可以send数据  
+同时本地在connect后可以recv接受数据
+
+#### urllib urllib2
+用于访问网络文件 可以像打开本地文件一样打开网络文件  通过urlopen 下载通过urlretrieve 会转换成html
+
+#### 多连接
+可以有三种解决方法  分别是fork thread 和异步IO  
+用SocketServer 可以用来fork和thread 分别是用ForkingMixIn 和ThreadingMixIn  
+异步IO 可以使用select 或者poll  
+框架 Twisted
+
+# python与万维网
+#### 屏幕抓取
+1. tidy 修复xhtml 改正错误的工具
+2. beautifulscup  注意findAll 以及各种标签的用法
+
